@@ -1,4 +1,4 @@
-import os
+          import os
 import codecs
 import chardet
 import numpy as np
@@ -50,6 +50,7 @@ for d_path in result2:
 print(len(wordlist))
 #--------------------------------------------------------------------------------------------------------------------
 
+#过滤掉词频过低以及过高的词
 for k in wordlist:
     if wordlist[k] >= 4 and wordlist[k] <= 1000:
         glossary[k]=wordlist[k]

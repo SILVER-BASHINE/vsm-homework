@@ -73,6 +73,38 @@ for d_path in result2:
           words = set(words.split())#集合中元素不具有重复性
           for word in words:
                word_vector[keys.index(word)] += 1
-
           d.close()
 print(word_vector)             
+
+#output：[9.5000e+01 7.0000e+01 1.8827e+04 ... 1.0000e+00 1.0000e+00 1.0000e+00]
+-------------------------------------------------------------------------------------------
+np.seterr(divide='ignore', invalid='ignore')
+for item in glossary:
+     idf_vec = np.log10(int(18828)/(word_vector+1))
+
+#由于memory error问题，固选择一个文件夹一个文件夹的形式分步读取，相同形式的小段代码有20个，固只贴出其中一段
+tfidf_vec_file='G:/PYCHARM/untitled3/vec_tf_idf.npy'
+vec_multiple=[]
+A=[]
+path_1=path+"/"+"alt.atheism"
+files=os.listdir(path_1)
+for file in files:
+    path__1=path_1+"/"+file
+    A.append(path__1)
+for d_path in A:
+     if (d_path[-5:] == '_pret'):
+          d=open(d_path,'rb')
+          tf_vec = np.zeros((len(glossary)))
+          words=d.read()
+          words=words.split()
+          keys=list(glossary.keys())
+          for word in words:
+               tf_vec[keys.index(word)]+=1
+          tf_vec /= len(words)
+          tf_idf_vec = tf_vec * idf_vec
+          vec_multiple.append(tf_idf_vec)
+          d.close()
+
+np.save(tfidf_vec_file,vec_multiple)
+
+

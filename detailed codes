@@ -24,7 +24,7 @@ for pack in packs:
 print('文档数:',len(result2)/2) #如果该处不除以二，那么输出结果将为37656
 ----------------------------------------------------------------------------
 
-#data pretreatment
+#数据预处理
 from nltk.corpus import stopwords
 from nltk.stem import SnowballStemmer as ss
 stp = stopwords.words('english')
@@ -82,6 +82,8 @@ print(word_vector)
 
 #output：[9.5000e+01 7.0000e+01 1.8827e+04 ... 1.0000e+00 1.0000e+00 1.0000e+00]
 -------------------------------------------------------------------------------------------
+
+
 np.seterr(divide='ignore', invalid='ignore')
 for item in glossary:
      idf_vec = np.log10(int(18828)/(word_vector+1))

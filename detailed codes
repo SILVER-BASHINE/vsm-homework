@@ -1,8 +1,15 @@
 #数据预处理及每个文本的VSM表示
-import os
-import codecs
-import chardet
-import numpy as np
+{
+   "cell_type": "code",
+   "execution_count": 1,
+   "metadata": {},
+   "outputs": [],
+   "source": [import os\n
+import codecs\n
+import chardet\n
+import numpy as np\n
+]
+}
 
 
 path='G:/PYCHARM/untitled3/20news-18828'
@@ -48,6 +55,7 @@ for d_path in result2:
              write_d.writelines('\n'.join(wordlist))
              write_d.close()  #open后close是一个好习惯
 ----------------------------------------------------------------------------------------
+#搞造所有文本词汇的字典glossary
 glossary = {}
 for d_path in result2:
      if(d_path[-5:]=='_pret'):
@@ -83,7 +91,7 @@ for item in glossary:
      idf_vec = np.log10(int(18828)/(word_vector+1))
 
 #由于memory error问题，固选择一个文件夹一个文件夹的形式分步读取，相同形式的小段代码有20个，固只贴出其中一段
-tfidf_vec_file='G:/PYCHARM/untitled3/vec_tf_idf.npy'
+tfidf_vec_file='G:/PYCHARM/untitled3/vec_tf_idf.npy'  #向量存储位置
 vec_multiple=[]
 A=[]
 path_1=path+"/"+"alt.atheism"

@@ -1,15 +1,11 @@
 #数据预处理及每个文本的VSM表示
-{
-   "cell_type": "code",
-   "execution_count": 1,
-   "metadata": {},
-   "outputs": [],
-   "source": [import os\n
-import codecs\n
-import chardet\n
-import numpy as np\n
-]
-}
+
+import os
+import codecs
+import chardet
+import numpy as np
+
+
 
 
 path='G:/PYCHARM/untitled3/20news-18828'

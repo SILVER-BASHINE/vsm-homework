@@ -63,4 +63,16 @@ for d_path in result2:
 print(glossary)
 
 -------------------------------------------------------------------------------------------
-             
+#统计每个词语的与之相应的包含该词语之文件的数目
+keys = list(glossary.keys())
+word_vector = np.zeros(len(glossary))
+for d_path in result2:
+     if (d_path[-5:] == '_pret'):
+          d=open(d_path,'rb')
+          words=d.read()
+          words = set(words.split())#集合中元素不具有重复性
+          for word in words:
+               word_vector[keys.index(word)] += 1
+
+          d.close()
+print(word_vector)             

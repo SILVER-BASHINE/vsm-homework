@@ -1,1 +1,21 @@
+#数据预处理及每个文本的VSM表示
+import os
+import codecs
+import chardet
+import numpy as np
 
+
+path='G:/PYCHARM/untitled3/20news-18828'
+packs=os.listdir(path)
+result1=[]
+result2=[]
+for pack in packs:
+     path1=path+"/"+pack
+     print(path1)
+     files=os.listdir(path1)
+     result1.append(path1)
+     for file in files:
+          path2=path1+"/"+file
+          result2.append(path2)
+
+print('文档数:',len(result2)/2)

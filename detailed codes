@@ -18,4 +18,49 @@ for pack in packs:
           path2=path1+"/"+file
           result2.append(path2)
 
-print('文档数:',len(result2)/2)
+print('文档数:',len(result2)/2) #如果该处不除以二，那么输出结果将为37656
+----------------------------------------------------------------------------
+
+#data pretreatment
+from nltk.corpus import stopwords
+from nltk.stem import SnowballStemmer as ss
+stp = stopwords.words('english')
+stm = ss('english')
+symbols= [',','.',':','_','!','?','/','\'','\"','*','>','<','@','~','-','(',')','%','=','\\','^'
+     ,'&','|','#','$','0','1','2','3','4','5','6','7','8','9','10','[',']','+','{','}',';','`','~']
+for d_path in result2:
+     if(d_path[-5:]!='_pret'):
+         d = open(d_path,'rb')
+         data = d.read()
+         encode = chardet.detect(data)['encoding']
+         with codecs.open(d_path, encoding=encode) as d:
+             write_d = open(d_path+'_pret',"w+",encoding='utf-8') #ascii编码无法写入‘gbk’文件，把其改为utf-8编码
+             words = d.read()
+             for z in symbols:
+                 words = words.replace(z,'')
+             words = words.split()
+             wordlist=[]
+             for word in words:
+                 word = stm.stem(word)
+                 if word not in stp:
+                     wordlist.append(word)
+
+             write_d.writelines('\n'.join(wordlist))
+             write_d.close()  #open后close是一个好习惯
+----------------------------------------------------------------------------------------
+glossary = {}
+for d_path in result2:
+     if(d_path[-5:]=='_pret'):
+          d= open(d_path,'rb')
+          words=d.read()
+          words=words.split()
+          for word in words:
+               if glossary.get(word) == None:
+                    glossary[word] = 1
+               else:
+                    glossary[word] += 1
+
+print(glossary)
+
+-------------------------------------------------------------------------------------------
+             

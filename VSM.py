@@ -1,4 +1,4 @@
-          import os
+import os
 import codecs
 import chardet
 import numpy as np
